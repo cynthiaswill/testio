@@ -8,9 +8,9 @@ function Chat({ socket }) {
   const [messages, setMessages] = useState([]);
   const { username, roomname } = useParams();
 
-  getHistoryByRoom(roomname)
-    .then((data) => console.log(data))
-    .catch((err) => console.dir(err));
+  // getHistoryByRoom(roomname)
+  //   .then((data) => console.log(data))
+  //   .catch((err) => console.dir(err));
 
   useEffect(() => {
     socket.on("message", (data) => {
@@ -24,7 +24,7 @@ function Chat({ socket }) {
       });
       setMessages([...temp]);
     });
-  }, []);
+  }, [socket, messages]);
   console.log(text, "<<<<<<<<<<<<<<<<");
   const sendData = () => {
     if (text !== "") {
