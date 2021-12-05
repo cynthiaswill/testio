@@ -1,30 +1,32 @@
 import axios from "axios";
 
-const historyApi = axios.create({
-  baseURL: "https://data.mongodb-api.com/app/data-myhok/endpoint/data/beta/action",
-});
+// const historyApi = axios.create({
+//   baseURL: "https://data.mongodb-api.com/app/data-myhok/endpoint/data/beta/action",
+// });
 
-export const getHistoryByRoom = (roomname) => {
-  return historyApi.post(
-    `/find`,
-    {
-      collection: "chatHistory",
-      database: "My_test_project",
-      dataSource: "Cluster0",
-      filter: { roomname: `${roomname}` },
-      projection: { _id: 0, username: 1, text: 1 },
-      sort: { timestamp: 1 },
-    },
-    {
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Request-Headers": "*",
-        "Access-Control-Allow-Origin": "*",
-        "api-key": "61ad0774c8ddac9f9582aea9",
-      },
-    }
-  );
-};
+// export const getHistoryByRoom = (roomname) => {
+//   return historyApi.post(
+//     `/find`,
+//     {
+//       collection: "chatHistory",
+//       database: "My_test_project",
+//       dataSource: "Cluster0",
+//       filter: { roomname: `${roomname}` },
+//       projection: { _id: 0, username: 1, text: 1 },
+//       sort: { timestamp: 1 },
+//     },
+//     {
+//       headers: {
+//         "Content-Type": "application/json",
+//         "Access-Control-Request-Headers": "*",
+//         "Access-Control-Allow-Origin": "*",
+//         "api-key": "61ad0774c8ddac9f9582aea9",
+//       },
+//     }
+//   );
+// };
+
+// above should work
 
 // const data = JSON.stringify({
 //   collection: "chatHistory",
@@ -53,3 +55,11 @@ export const getHistoryByRoom = (roomname) => {
 //   .catch(function (error) {
 //     console.log(error);
 //   });
+
+const historyApi = axios.create({
+  baseURL: "BACKEND_API_ADDRESS",
+});
+
+export const getHistoryByRoom = (room) => {
+  historyApi.get(`/history/${room}`);
+};

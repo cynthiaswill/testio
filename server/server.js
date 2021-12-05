@@ -98,3 +98,14 @@ io.on("connection", (socket) => {
     }
   });
 });
+
+// app.get(`/history/:room`, (req, res) => {
+//   const { room } = req.params;
+//   fetchHistory(room)
+//     .then((data) => {
+//       return data;
+//     })
+//     .then((history) => {
+//       res.send({ history });
+//     });
+// });
