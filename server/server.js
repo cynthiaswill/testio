@@ -1,10 +1,12 @@
 const express = require("express");
-const app = express();
-const socket = require("socket.io");
 const cors = require("cors");
+const socket = require("socket.io");
+
 const { get_Current_User, user_Disconnect, join_User } = require("./socketUser");
 const { fetchHistory } = require("./fetchHistory");
 
+const app = express();
+app.use(cors());
 const { MongoClient } = require("mongodb");
 const uri =
   "mongodb+srv://yzhang4:123456abc@cluster0.rspyf.mongodb.net/My_test_project?retryWrites=true&w=majority";
@@ -13,8 +15,6 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 app.use(express());
 
 const port = 8000;
-
-app.use(cors());
 
 const server = app.listen(port, console.log(`Server is running on port: ${port} `));
 
@@ -30,7 +30,9 @@ io.on("connection", (socket) => {
     socket.join(p_user.roomname);
 
     // fetching chat history of this room
-    fetchHistory(p_user.roomname).catch(console.dir);
+    fetchHistory(p_user.roomname)
+      .then((data) => console.log(data, "!!"))
+      .catch(console.dir);
 
     //display a welcome message to the user who have joined a room
     socket.emit("message", {

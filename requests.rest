@@ -1,0 +1,13 @@
+POST https://data.mongodb-api.com/app/data-myhok/endpoint/data/beta/action/find
+    Content-Type: "application/json",
+    Access-Control-Allow-Headers: "*",
+    api-key: "61ad0774c8ddac9f9582aea9"
+
+    {
+    collection: "chatHistory",
+    database: "My_test_project",
+    dataSource: "Cluster_0",
+    filter: { roomname: `${roomname}` },
+    projection: { _id: 0, username: 1, text: 1 },
+    sort: { timestamp: 1 },
+  }

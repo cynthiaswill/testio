@@ -5,6 +5,7 @@ const uri =
 const client = new MongoClient(uri);
 
 async function fetchHistory(roomname) {
+  const chatHistory = [];
   try {
     await client.connect();
     const database = client.db("My_test_project");
@@ -23,10 +24,13 @@ async function fetchHistory(roomname) {
       console.log("No documents found!");
     }
     // replace console.dir with your callback to access individual elements
-    await cursor.forEach(console.dir);
+    await cursor.forEach((item) => {
+      chatHistory.push(item);
+    });
   } finally {
     await client.close();
   }
+  return chatHistory;
 }
 
 module.exports = { fetchHistory };
