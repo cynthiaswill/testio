@@ -1,14 +1,16 @@
 import "./Chat.scss";
 import { useParams } from "react-router";
 import { useState, useEffect, useRef } from "react";
-// import { getHistoryByRoom } from "../utils/getHistory";
+import { getHistoryByRoom } from "../utils/getHistory";
 
 function Chat({ socket }) {
   const [text, setText] = useState("");
   const [messages, setMessages] = useState([]);
   const { username, roomname } = useParams();
 
-  // getHistoryByRoom(roomname).catch((err) => console.dir(err));
+  getHistoryByRoom(roomname)
+    .then((data) => console.log(data))
+    .catch((err) => console.dir(err));
 
   useEffect(() => {
     socket.on("message", (data) => {
@@ -22,7 +24,7 @@ function Chat({ socket }) {
       });
       setMessages([...temp]);
     });
-  }, [messages]);
+  }, []);
   console.log(text, "<<<<<<<<<<<<<<<<");
   const sendData = () => {
     if (text !== "") {
