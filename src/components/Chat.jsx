@@ -43,19 +43,19 @@ function Chat({ socket }) {
         </h2>
       </div>
       <div className="chat-message">
-        {messages.map((i) => {
-          if (i.username === username) {
+        {messages.map((msg) => {
+          if (msg.username === username) {
             return (
               <div className="message">
-                <p>{i.text}</p>
-                <span>{i.username}</span>
+                <p>{msg.text}</p>
+                <span>{msg.username}</span>
               </div>
             );
           } else {
             return (
               <div className="message mess-right">
-                <p>{i.text} </p>
-                <span>{i.username}</span>
+                <p>{msg.text} </p>
+                <span>{msg.username}</span>
               </div>
             );
           }

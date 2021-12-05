@@ -42,7 +42,7 @@ io.on("connection", (socket) => {
   socket.on("chat", (text) => {
     //gets the room user and the message sent
     const p_user = get_Current_User(socket.id);
-
+    console.log(p_user.username, p_user.room, text, "<<<<<<<<");
     io.to(p_user.room).emit("message", {
       userId: p_user.id,
       username: p_user.username,
