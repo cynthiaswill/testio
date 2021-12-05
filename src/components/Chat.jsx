@@ -13,7 +13,7 @@ function Chat({ socket }) {
       temp.push({
         userId: data.userId,
         username: data.username,
-        text: text,
+        text: data.text,
       });
       setMessages([...temp]);
     });
