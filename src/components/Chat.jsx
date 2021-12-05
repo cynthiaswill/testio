@@ -10,10 +10,12 @@ function Chat({ socket }) {
   useEffect(() => {
     socket.on("message", (data) => {
       let temp = messages;
+
       temp.push({
         userId: data.userId,
         username: data.username,
         text: data.text,
+        timestamp: new Date(),
       });
       setMessages([...temp]);
     });
@@ -46,14 +48,14 @@ function Chat({ socket }) {
         {messages.map((msg) => {
           if (msg.username === username) {
             return (
-              <div className="message">
+              <div key={msg.timestamp} className="message">
                 <p>{msg.text}</p>
                 <span>{msg.username}</span>
               </div>
             );
           } else {
             return (
-              <div className="message mess-right">
+              <div key={msg.timestamp} className="message mess-right">
                 <p>{msg.text} </p>
                 <span>{msg.username}</span>
               </div>
