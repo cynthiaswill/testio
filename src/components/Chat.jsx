@@ -1,16 +1,18 @@
 import "./Chat.scss";
 import { useParams } from "react-router";
 import { useState, useEffect, useRef } from "react";
+import { getHistoryByRoom } from "../utils/getHistory";
 
 function Chat({ socket }) {
   const [text, setText] = useState("");
   const [messages, setMessages] = useState([]);
   const { username, roomname } = useParams();
 
+  getHistoryByRoom(roomname).catch((err) => console.dir(err));
+
   useEffect(() => {
     socket.on("message", (data) => {
       let temp = messages;
-      // getHistoryByRoom(roomname);
 
       temp.push({
         userId: data.userId,
