@@ -19,7 +19,7 @@ function Home({ socket }) {
     <div className="homepage">
       <h1>Welcome to ChatApp</h1>
       <input
-        placeholder="Input your user name"
+        placeholder="Input your display name"
         value={username}
         onChange={(e) => setusername(e.target.value)}
       ></input>
