@@ -10,6 +10,11 @@
       "StackName": "amplify-amplifye6dcd99f5bfb4-staging-15453",
       "StackId": "arn:aws:cloudformation:eu-west-2:196593019446:stack/amplify-amplifye6dcd99f5bfb4-staging-15453/99800b00-8f94-11ec-9595-068e919b3da4",
       "AmplifyAppId": "d2abogtw1khr76"
+    },
+    "categories": {
+      "auth": {
+        "testio5d51b909": {}
+      }
     }
   }
 }
